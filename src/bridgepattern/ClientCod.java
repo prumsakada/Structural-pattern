@@ -1,0 +1,106 @@
+package bridgepattern;
+
+import java.util.List;
+
+class Product{
+}
+
+class User{
+}
+
+interface Service<T>{
+    List<T> getAll();
+
+    T save(T o);
+
+    int delete(T o);
+}
+
+interface Repository<T>{
+    List<T> findAll();
+
+    T save(T o);
+
+    int delete(T o);
+}
+
+//Abstraction
+class UserService implements Service<User>{
+    @Override
+    public List<User> getAll() {
+        return List.of();
+    }
+
+    @Override
+    public User save(User o) {
+        return null;
+    }
+
+    @Override
+    public int delete(User o) {
+        return 0;
+    }
+}
+class ProductService implements Service<Product>{
+
+    @Override
+    public List<Product> getAll() {
+        return List.of();
+    }
+
+    @Override
+    public Product save(Product o) {
+        return null;
+    }
+
+    @Override
+    public int delete(Product o) {
+        return 0;
+    }
+}
+
+//Implement
+class UserRepository implements Repository<User>{
+
+    UserService userService = new UserService();
+
+    @Override
+    public List<User> findAll() {
+        return List.of();
+    }
+
+    @Override
+    public User save(User o) {
+        return null;
+    }
+
+    @Override
+    public int delete(User o) {
+        return 0;
+    }
+}
+class ProductRepository implements Repository<Product>{
+
+    @Override
+    public List<Product> findAll() {
+        return List.of();
+    }
+
+    @Override
+    public Product save(Product o) {
+        return null;
+    }
+
+    @Override
+    public int delete(Product o) {
+        return 0;
+    }
+}
+
+
+public class ClientCod {
+    public static void main(String[] args) {
+
+    }
+
+}

@@ -8,6 +8,7 @@ class Product{
 class User{
 }
 
+//Abstraction
 interface Service<T>{
     List<T> getAll();
 
@@ -15,17 +16,10 @@ interface Service<T>{
 
     int delete(T o);
 }
-
-interface Repository<T>{
-    List<T> findAll();
-
-    T save(T o);
-
-    int delete(T o);
-}
-
-//Abstraction
 class UserService implements Service<User>{
+
+    private final Repository<User> userRepository = new UserRepository();
+
     @Override
     public List<User> getAll() {
         return List.of();
@@ -42,6 +36,8 @@ class UserService implements Service<User>{
     }
 }
 class ProductService implements Service<Product>{
+
+    private final Repository<Product> productRepository = new ProductRepository();
 
     @Override
     public List<Product> getAll() {
@@ -60,9 +56,14 @@ class ProductService implements Service<Product>{
 }
 
 //Implement
-class UserRepository implements Repository<User>{
+interface Repository<T>{
+    List<T> findAll();
 
-    UserService userService = new UserService();
+    T save(T o);
+
+    int delete(T o);
+}
+class UserRepository implements Repository<User>{
 
     @Override
     public List<User> findAll() {
@@ -96,7 +97,6 @@ class ProductRepository implements Repository<Product>{
         return 0;
     }
 }
-
 
 public class ClientCod {
     public static void main(String[] args) {
